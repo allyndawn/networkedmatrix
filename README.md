@@ -9,5 +9,5 @@ make
 
 ## Running
 ```
-./eyes
+sudo ./eyes --led-no-hardware-pulse
 ```
