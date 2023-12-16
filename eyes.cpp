@@ -16,6 +16,20 @@ static void InterruptHandler(int signo) {
 	interrupt_received = true;
 }
 
+static void DrawEyeOnCanvas(Canvas *canvas, int x, int y) {
+	const unsigned int eye_data[16] = {0x0C00, 0x1F00, 0x1F80, 0x1000, 0x1FE0, 0x3FE0, 0x3FF0, 0x3FF0,
+					0x3FF0, 0x3FF0, 0x3FF0, 0x1FE0, 0x1FE0, 0x1FC0, 0x1F80, 0x0F00};
+
+	for (int ex = 0; ex<16; ex++) {
+		unsigned int column = eye_data[ex];
+		for (int ey = 0; ey<16; ey++) {
+			int g = column & 0x001 ? 255 : 0;
+			canvas->SetPixel(x+ex, y+ey, 0, 0, g);
+			column = column >> 1;
+		}
+	}
+}
+
 static void DrawOnCanvas(Canvas *canvas) {
 	for (int i = 0; i<32; i++) {
 		if (interrupt_received) {
@@ -46,7 +60,10 @@ int main(int argc, char **argv) {
 	signal(SIGTERM, InterruptHandler);
 	signal(SIGINT, InterruptHandler);
 
-	DrawOnCanvas(canvas);
+	// DrawOnCanvas(canvas);
+	DrawEyeOnCanvas(canvas, 8, 8);
+	DrawEyeOnCanvas(canvas, 40, 8);
+	sleep(5);
 
 	canvas->Clear();
 	delete canvas;
