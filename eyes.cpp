@@ -18,7 +18,8 @@ static void InterruptHandler(int signo) {
 }
 
 int main(int argc, char **argv) {
-	cout << "Hello World" << endl;
+	cout << "OWObot Eyes POC" << endl;
+	cout << "Press Ctrl-C to exit" << endl;
 
 	RGBMatrix::Options defaults;
 	defaults.hardware_mapping = "regular";
@@ -36,8 +37,11 @@ int main(int argc, char **argv) {
 	signal(SIGINT, InterruptHandler);
 
 	StaticEyesRenderer *renderer = new StaticEyesRenderer();
-	renderer->drawFrameToCanvas(canvas);
-	sleep(5);
+
+	do {
+		renderer->drawFrameToCanvas(canvas);
+		usleep(100);
+	} while (!interrupt_received);
 
 	canvas->Clear();
 	delete canvas;
