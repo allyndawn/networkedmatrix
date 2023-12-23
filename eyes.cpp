@@ -5,6 +5,7 @@
 
 #include "led-matrix.h"
 #include "renderers/static-eyes-renderer.h"
+#include "renderers/kitt-renderer.h"
 
 using namespace std;
 
@@ -36,11 +37,12 @@ int main(int argc, char **argv) {
 	signal(SIGTERM, InterruptHandler);
 	signal(SIGINT, InterruptHandler);
 
-	StaticEyesRenderer *renderer = new StaticEyesRenderer();
+	// StaticEyesRenderer *renderer = new StaticEyesRenderer();
+	KITTRenderer *renderer = new KITTRenderer();
 
 	do {
 		renderer->drawFrameToCanvas(canvas);
-		usleep(100);
+		usleep(100000);
 	} while (!interrupt_received);
 
 	canvas->Clear();
