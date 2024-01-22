@@ -5,7 +5,19 @@
 - Raspberry Pi Zero W
 
 ## Building
-- Expects https://github.com/hzeller/rpi-rgb-led-matrix to be cloned in a peer folder to this repo
+- (Not sure if needed - might be auto-installed by cpprestsdk) Install [Boost]()
+
+```
+sudo apt install libboost-dev
+```
+
+- Install [Microsoft's REST API toolkit for C++](https://github.com/microsoft/cpprestsdk)
+
+```
+sudo apt-get install libcpprest-dev
+```
+
+- Clone https://github.com/hzeller/rpi-rgb-led-matrix in a peer folder to this repo and make it
 
 ```
 make
