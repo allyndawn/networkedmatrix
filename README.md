@@ -1,4 +1,4 @@
-# seraphs-eyes-poc
+# networkedmatrix (C++)
 
 ## Hardware
 - Waveshare 64x32 2.5mm pitch LED matrix
